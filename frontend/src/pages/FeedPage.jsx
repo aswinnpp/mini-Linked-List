@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../auth/AuthContext.jsx';
-const API_URL = 'http://localhost:5001';
+const API_URL = 'https://mini-linked-list.onrender.com';
 
 function NewPost({ onCreated }) {
   const { token } = useAuth();
