@@ -39,17 +39,9 @@ if (!fs.existsSync(uploadsDir)) {
 app.use('/uploads', express.static(uploadsDir));
 app.use('/posts', postsRoutes);
 
+console.log(process.env.MONGODB_URI)
 
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log("✅ MongoDB connected successfully"))
+  .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-const MONGO_URI = process.env.MONGODB_URI 
-
-mongoose
-  .connect(MONGO_URI)
-  .then(() => {
-    console.log("MongoDB connected to:", MONGO_URI);
-    app.listen(5001, () => console.log("Auth Service running on 5001"));
-  })
-  .catch((err) => {
-    console.error("MongoDB connection error:", err);
-    process.exit(1);
-  });
