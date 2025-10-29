@@ -39,6 +39,7 @@ if (!fs.existsSync(uploadsDir)) {
 app.use('/uploads', express.static(uploadsDir));
 app.use('/posts', postsRoutes);
 
+const PORT = process.env.PORT || 4000;
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {
