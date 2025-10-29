@@ -14,10 +14,10 @@ import cookieParser from "cookie-parser";
 const app = express();
 
 app.use(express.json());
-app.use(cookieParser()); // parse cookies before routes that may read them
+app.use(cookieParser());
 app.use(
   cors({
-    origin: (origin, callback) => callback(null, true), // allow all origins while preserving non-"*" for credentials
+    origin: (origin, callback) => callback(null, true), 
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -29,7 +29,9 @@ app.options('*', cors({
 }));
 
 app.use("/auth", authRoutes);
-// Ensure uploads directory exists and serve static files
+
+
+
 const uploadsDir = path.resolve('uploads');
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
@@ -37,12 +39,9 @@ if (!fs.existsSync(uploadsDir)) {
 app.use('/uploads', express.static(uploadsDir));
 app.use('/posts', postsRoutes);
 
-// DEBUG: show what Node sees
-console.log("Working directory:", process.cwd());
-console.log("Loaded .env? MONGO_URI =", process.env.MONGO_URI);
 
-// fallback: if env var missing, use a sensible local default for development
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/mini-linkedin';
+
+const MONGO_URI = process.env.MONGO_URI 
 
 mongoose
   .connect(MONGO_URI)

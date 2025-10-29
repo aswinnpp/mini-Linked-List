@@ -1,6 +1,6 @@
 import express from "express";
 import { register } from "../controllers/authController.js";
-import { verifyOtp, resendOtp } from "../controllers/OtpControllers.js";
+import { verifyOtp, resendOtp } from "../controllers/otpControllers.js";
 import { login } from "../controllers/loginControllers.js";
 
 
