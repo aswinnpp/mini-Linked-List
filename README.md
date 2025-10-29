@@ -7,25 +7,19 @@ Simple social app where users can sign up, log in, create posts, and view a publ
 - Frontend: React (Vite), React Router
 
 ### Local Setup
-Prereqs: Node 18+, npm, MongoDB running locally (or Atlas URI).
+Prerequisites: Node 18+, npm, MongoDB running locally (or Atlas URI).
 
 1) Backend
 ```
 cd backend
 npm install
 ```
-Create `.env` in `backend/`:
-```
-PORT=4000
-MONGODB_URI=mongodb://127.0.0.1:27017/mini_linkedin
-JWT_SECRET=replace_with_a_secure_random_string
-CLIENT_URL=http://localhost:5173
-```
+
 Run server:
 ```
 npm run dev
 ```
-Server starts at `http://localhost:4000`.
+Server starts at `http://localhost:5001`.
 
 2) Frontend
 ```
@@ -34,7 +28,7 @@ npm install
 ```
 Optionally create `.env` in `frontend/` to point at your backend:
 ```
-VITE_API_URL=http://localhost:4000/api
+
 ```
 Run app:
 ```
@@ -43,16 +37,16 @@ npm run dev
 Open `http://localhost:5173`.
 
 ### Features
-- Signup/Login with email & password
+- Sign up / Log in with email & password
 - JWT stored in localStorage (Bearer on requests)
-- Create post (text)
+- Create posts (text)
 - Public feed of all posts, newest first
 
 ### API Endpoints
-- `POST /api/auth/signup` -> { token, user }
-- `POST /api/auth/login` -> { token, user }
-- `POST /api/posts` (auth) -> create post
-- `GET /api/posts` -> list posts
+- `POST //signup` -> { token, user }
+- `POST /login` -> { token, user }
+- `POST /posts` (auth) -> create post
+- `GET /posts` -> list posts
 
 ### Deploy
 - Frontend: Vercel/Netlify
