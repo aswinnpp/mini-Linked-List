@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-const API_BASE = 'http://localhost:5000';
+const API_BASE = 'https://mini-linked-list.onrender.com';
 
 export default function SignupPage() {
   const [name, setName] = useState('');
