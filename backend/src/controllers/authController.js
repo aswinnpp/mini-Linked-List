@@ -4,29 +4,35 @@ import { hashPassword } from "../utils/hash.js";
 import {generateOTP} from "../utils/jwt.js"
 
 import nodemailer from "nodemailer";
-
 function createEmailTransporter() {
   return nodemailer.createTransport({
-    service: "Gmail",
+    host: 'smtp.gmail.com',
+    port: 465,                       
+    secure: true,                    
     auth: {
       user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
+      pass: process.env.EMAIL_PASS,  
     },
     pool: true,
     maxConnections: 1,
     connectionTimeout: 60000,
     greetingTimeout: 10000,
     socketTimeout: 60000,
+    tls: {
+      rejectUnauthorized: true
+    }
   });
 }
-
 export const register = async (req, res) => {
   try {
     const { fullName, email, password, role } = req.body;
 
+    console.log("sddsaddvsd",req.body);
+    
+
     const existing = await User.findOne({ email });
     if (existing) {
-      // If user exists but email not verified yet, resend a fresh OTP instead of erroring
+      
       if (!existing.emailIsAuthenticated) {
         const otp = generateOTP();
         await Otp.deleteMany({ userId: existing._id });
@@ -64,10 +70,10 @@ export const register = async (req, res) => {
 
     const otp = generateOTP();
 
-    // Store OTP in separate collection
+   
     await Otp.create({ userId: user._id, otp });
 
-    // Send OTP via email (do not fail registration if email cannot be sent)
+    
     try {
       if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
         const transporter = createEmailTransporter();

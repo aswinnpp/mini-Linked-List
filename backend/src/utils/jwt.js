@@ -36,11 +36,11 @@ export const verifyAccessToken = (req, res, next) => {
 
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
-      // Token expired or invalid
+    
       return res.status(403).json({ message: "Invalid or expired token" });
     }
 
-    req.user = decoded; // save user info in request
+    req.user = decoded; 
     next();
   });
 };

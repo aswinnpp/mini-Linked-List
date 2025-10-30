@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-const API_BASE = 'https://mini-linked-list.onrender.com';
+const API_BASE = 'http://localhost:5000';
 
 export default function SignupPage() {
   const [name, setName] = useState('');
@@ -28,6 +28,9 @@ export default function SignupPage() {
         password,
         role: 'candidate'
       });
+
+      console.log(data);
+      
       setInfo(data.message || 'Signup successful. Please verify your email.');
       setRegisteredEmail(email);
       setOtpStage(true);

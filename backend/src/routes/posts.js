@@ -39,7 +39,7 @@ function requireAuth(req, res, next) {
   }
 }
 
-// Create a new post (auth required) with optional image
+
 router.post('/', requireAuth, upload.single('image'), async (req, res) => {
   try {
     const { text } = req.body;
@@ -62,7 +62,7 @@ router.post('/', requireAuth, upload.single('image'), async (req, res) => {
   }
 });
 
-// Public feed: latest first
+
 router.get('/', async (_req, res) => {
   try {
     const posts = await Post.find({})
@@ -86,7 +86,7 @@ router.get('/', async (_req, res) => {
   }
 });
 
-// Delete a post (owner only)
+
 router.delete('/:id', requireAuth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
