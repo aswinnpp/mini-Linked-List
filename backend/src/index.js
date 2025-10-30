@@ -2,7 +2,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-dotenv.config({ path: './.env' }); // explicit path to avoid ambiguity
+dotenv.config({ path: './.env' }); 
 
 import authRoutes from "./routes/authRoutes.js";
 import postsRoutes from "./routes/posts.js";
@@ -50,4 +50,4 @@ mongoose
     console.log("✅ MongoDB connected successfully");
     
   })
-  .catch((err) => console.error("❌ MongoDB connection error:", err));
+  .catch((err) => console.error(" MongoDB connection error:", err));

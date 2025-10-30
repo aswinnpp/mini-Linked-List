@@ -53,7 +53,7 @@ export const register = async (req, res) => {
         try {
           await transporter.sendMail(mailOptions);
         } catch (e) {
-          // Log but do not expose transporter internals to client
+          
           console.error('Failed to resend OTP email', e?.message || e);
         }
 
